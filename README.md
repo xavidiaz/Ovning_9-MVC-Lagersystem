@@ -7,32 +7,32 @@ ASP.NET Core MVC app för lagerhantering av produkter.
 | Branch             | Innehåll                           |
 | ------------------ | ---------------------------------- |
 | `main`             | Stabil kod, mergas efter varje fas |
-| `fas-1/controller` | Hårdkodad controller utan vyer     |
+| `fas-1/controller` | Hårdkodad controller utan vyer ✅  |
 | `fas-2/views`      | Razor Views + ViewModel            |
 | `fas-3/model`      | EF Core, databas, riktig data      |
 
-## Fas 1 — Controller (hårdkodad data, inga vyer)
+## Fas 1 — Controller (hårdkodad data, inga vyer) ✅
 
 - [x] Skapa MVC-projekt: `dotnet new mvc`
 - [x] Skapa `Controllers/ProductsController.cs`
-- [x] Hårdkoda en lista av produkter direkt i controllern (anonyma objekt)
+- [x] Hårdkoda en lista av produkter direkt i controllern (record + List)
 - [x] `Index` → returnerar `Json()` med alla produkter
-- [ ] `Details(int id)` → returnerar en produkt som JSON
-- [ ] `Create` (POST) → tar emot query params, lägger till i listan, returnerar bekräftelse
-- [ ] Uppdatera routing i `Program.cs` → default controller = Products
-- [ ] Testa alla endpoints i webbläsaren / `curl`
+- [x] `Details(int id)` → returnerar en produkt som JSON
+- [x] `Create` → tar emot query params, lägger till i listan, returnerar JSON
+- [x] Uppdatera routing i `Program.cs` → default controller = Products
+- [x] Testa alla endpoints i webbläsaren / `curl`
 
 ## Fas 2 — Views (controller + Razor, fortfarande hårdkodad data)
 
-- [ ] Ersätt `Content()`/`Json()` med `return View(products)` i controllern
-- [ ] Skapa Razor Views under `Views/Products/`:
-  - [ ] `Index.cshtml` — produktlista med `@model`
-  - [ ] `Details.cshtml`
-  - [ ] `Create.cshtml` — formulär med Form Tag Helpers
-  - [ ] `Edit.cshtml`
-  - [ ] `Delete.cshtml`
-- [ ] Lägg till navigation i `_Layout.cshtml` → Products/Index
-- [ ] Skapa `ProductViewModel` (`Name`, `Price`, `Count`, `InventoryValue`)
+- [x] Ersätt `Json()` med `return View(products)` i controllern
+- [x] Skapa Razor Views under `Views/Products/`:
+  - [x] `Index.cshtml` — produktlista med `@model`
+  - [x] `Details.cshtml`
+  - [x] `Create.cshtml` — formulär med Form Tag Helpers
+  - [x] `Edit.cshtml`
+  - [x] `Delete.cshtml`
+- [x] Lägg till navigation i `_Layout.cshtml` → Products/Index
+- [x] Skapa `ProductViewModel` (`Name`, `Price`, `Count`, `InventoryValue`)
 - [ ] Skapa action som mappar hårdkodad data → `ProductViewModel` (Price × Count)
 - [ ] Skapa vy för inventory overview
 - [ ] Skapa sökformulär för kategorifiltrering (fortfarande mot hårdkodad lista)

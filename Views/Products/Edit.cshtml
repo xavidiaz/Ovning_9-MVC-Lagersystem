@@ -1,0 +1,41 @@
+@model Ovning_9.Models.Product
+
+@{
+    ViewData["Title"] = "Edit Product";
+}
+
+<h1>Edit @Model.Name</h1>
+
+<form asp-action="Edit" method="post">
+    <input name="id" type="hidden" value="@Model.Id" />
+    <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input name="name" type="text" class="form-control" value="@Model.Name" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Price</label>
+        <input name="price" type="number" class="form-control" value="@Model.Price" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Order Date</label>
+        <input name="orderdate" type="date" class="form-control" value="@Model.Orderdate.ToString("yyyy-MM-dd")" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Category</label>
+        <input name="category" type="text" class="form-control" value="@Model.Category" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Shelf</label>
+        <input name="shelf" type="text" class="form-control" value="@Model.Shelf" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Count</label>
+        <input name="count" type="number" class="form-control" value="@Model.Count" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea name="description" class="form-control">@Model.Description</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

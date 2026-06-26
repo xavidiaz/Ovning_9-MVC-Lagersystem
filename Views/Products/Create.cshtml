@@ -1,0 +1,42 @@
+@{
+    ViewData["Title"] = "Create Product";
+}
+
+<h1>Create Product</h1>
+
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label class="form-label">Id</label>
+        <input name="id" type="number" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input name="name" type="text" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Price</label>
+        <input name="price" type="number" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Order Date</label>
+        <input name="orderdate" type="date" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Category</label>
+        <input name="category" type="text" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Shelf</label>
+        <input name="shelf" type="text" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Count</label>
+        <input name="count" type="number" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea name="description" class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

@@ -1,0 +1,26 @@
+@model Ovning_9.Models.Product
+
+<h1>@Model.Name</h1>
+
+<dl class="row">
+    <dt class="col-sm-3">Price</dt>
+    <dd class="col-sm-9">@Model.Price kr</dd>
+
+    <dt class="col-sm-3">Order Date</dt>
+    <dd class="col-sm-9">@Model.Orderdate.ToShortDateString()</dd>
+
+    <dt class="col-sm-3">Category</dt>
+    <dd class="col-sm-9">@Model.Category</dd>
+
+    <dt class="col-sm-3">Shelf</dt>
+    <dd class="col-sm-9">@Model.Shelf</dd>
+
+    <dt class="col-sm-3">Count</dt>
+    <dd class="col-sm-9">@Model.Count</dd>
+
+    <dt class="col-sm-3">Description</dt>
+    <dd class="col-sm-9">@Model.Description</dd>
+</dl>
+
+<a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+<a asp-action="Index">Back to List</a>
