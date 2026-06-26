@@ -15,9 +15,9 @@ ASP.NET Core MVC app för lagerhantering av produkter.
 
 - [x] Skapa MVC-projekt: `dotnet new mvc`
 - [x] Skapa `Controllers/ProductsController.cs`
-- [ ] Hårdkoda en lista av produkter direkt i controllern (anonyma objekt eller dictionary)
-- [ ] `Index` → returnerar `Content()` eller `Json()` med alla produkter
-- [ ] `Details(int id)` → returnerar en produkt som text/JSON
+- [x] Hårdkoda en lista av produkter direkt i controllern (anonyma objekt)
+- [x] `Index` → returnerar `Json()` med alla produkter
+- [ ] `Details(int id)` → returnerar en produkt som JSON
 - [ ] `Create` (POST) → tar emot query params, lägger till i listan, returnerar bekräftelse
 - [ ] Uppdatera routing i `Program.cs` → default controller = Products
 - [ ] Testa alla endpoints i webbläsaren / `curl`
