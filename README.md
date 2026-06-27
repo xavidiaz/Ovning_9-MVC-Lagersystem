@@ -33,9 +33,9 @@ ASP.NET Core MVC app för lagerhantering av produkter.
   - [x] `Delete.cshtml`
 - [x] Lägg till navigation i `_Layout.cshtml` → Products/Index
 - [x] Skapa `ProductViewModel` (`Name`, `Price`, `Count`, `InventoryValue`)
-- [ ] Skapa action som mappar hårdkodad data → `ProductViewModel` (Price × Count)
-- [ ] Skapa vy för inventory overview
-- [ ] Skapa sökformulär för kategorifiltrering (fortfarande mot hårdkodad lista)
+- [x] Skapa action som mappar hårdkodad data → `ProductViewModel` (Price × Count)
+- [x] Skapa vy för inventory overview
+- [x] Skapa sökformulär för kategorifiltrering (fortfarande mot hårdkodad lista)
 
 ## Fas 3 — Model (EF Core ersätter hårdkodad data)
 

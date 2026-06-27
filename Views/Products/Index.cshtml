@@ -5,7 +5,10 @@
 <p>
     <a asp-action="Create" class="btn btn-primary">Add New Product</a>
 </p>
-
+<form asp-action="Search" method="get">
+    <input name="category" type="text" class="form-control" placeholder="Search by category..." />
+    <button type="submit" class="btn btn-primary mt-2">Search</button>
+</form>
 <table class="table">
     <thead>
         <tr>
