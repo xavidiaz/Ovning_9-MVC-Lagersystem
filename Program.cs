@@ -1,4 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using Ovning_9.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Database
+builder.Services.AddDbContext<StorageContext>(options =>
+    options.UseSqlite("Data Source=storage.db")
+);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

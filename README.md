@@ -39,16 +39,16 @@ ASP.NET Core MVC app för lagerhantering av produkter.
 
 ## Fas 3 — Model (EF Core ersätter hårdkodad data)
 
-- [ ] Skapa `Models/Product.cs` med auto-properties:
+- [x] Skapa `Models/Product.cs` med auto-properties:
   - `int Id`, `string Name`, `int Price`, `DateTime Orderdate`, `string Category`, `string Shelf`, `int Count`, `string Description`
-- [ ] Lägg till Data Annotations (`[Range]`, `[Required]`, `[DataType(DataType.Date)]`)
-- [ ] Skapa `Data/StorageContext.cs` (ärver `DbContext`, `DbSet<Product> Product`)
-- [ ] Registrera `StorageContext` i `Program.cs` med `AddDbContext`
-- [ ] Konfigurera connection string i `appsettings.json`
-- [ ] `dotnet ef migrations add Init` → `dotnet ef database update`
-- [ ] Seeda testdata
-- [ ] Injicera `StorageContext` i `ProductsController` via konstruktorn
-- [ ] Ersätt hårdkodad lista med `_context.Product` i alla actions
+- [x] Lägg till Data Annotations (`[Range]`, `[Required]`, `[DataType(DataType.Date)]`)
+- [x] Skapa `Data/StorageContext.cs` (ärver `DbContext`, `DbSet<Product> Product`)
+- [x] Registrera `StorageContext` i `Program.cs` med `AddDbContext`
+- [x] Konfigurera connection string i `appsettings.json`
+- [x] `dotnet ef migrations add Init` → `dotnet ef database update`
+- [x] Seeda testdata
+- [x] Injicera `StorageContext` i `ProductsController` via konstruktorn
+- [x] Ersätt hårdkodad lista med `_context.Product` i alla actions
 - [ ] Verifiera att alla vyer fungerar med riktig data
 - [ ] **Extra:** Dropdown-meny med kategorier från databasen (`IEnumerable<SelectListItem>`)
 - [ ] **Extra:** Kombinerad filtrering på kategori + produktnamn

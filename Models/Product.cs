@@ -1,34 +1,35 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Ovning_9.Models;
 
 public class Product
 {
-    public int Id { get; }
-    public string Name { get; }
-    public int Price { get; }
-    public DateTime Orderdate { get; }
-    public string Category { get; }
-    public string Shelf { get; }
-    public int Count { get; }
-    public string Description { get; }
+    public int Id { get; set; }
 
-    public Product(
-        int id,
-        string name,
-        int price,
-        DateTime orderdate,
-        string category,
-        string shelf,
-        int count,
-        string description
-    )
-    {
-        Id = id;
-        Name = name;
-        Price = price;
-        Orderdate = orderdate;
-        Category = category;
-        Shelf = shelf;
-        Count = count;
-        Description = description;
-    }
+    [Required]
+    [StringLength(100)]
+    public string Name { get; set; } = string.Empty;
+
+    [Required]
+    [Range(1, 100000)]
+    public int Price { get; set; }
+
+    [DataType(DataType.Date)]
+    public DateTime Orderdate { get; set; }
+
+    [Required]
+    [StringLength(50)]
+    public string Category { get; set; } = string.Empty;
+
+    [Required]
+    [StringLength(10)]
+    public string Shelf { get; set; } = string.Empty;
+
+    [Range(0, 10000)]
+    public int Count { get; set; }
+
+    [StringLength(500)]
+    public string Description { get; set; } = string.Empty;
+
+    public Product() { }
 }

@@ -1,62 +1,31 @@
 using Microsoft.AspNetCore.Mvc;
+using Ovning_9.Data;
 using Ovning_9.Models;
 
 namespace Ovning_9.Controllers;
 
 public class ProductsController : Controller
 {
-    private static List<Product> _products = new()
+    // private static List<Product> _context.Products = new();
+    private readonly StorageContext _context;
+
+    public ProductsController(StorageContext context)
     {
-        new Product(
-            1,
-            "Keyboard",
-            899,
-            new DateTime(2024, 3, 15),
-            "Peripherals",
-            "A1",
-            45,
-            "Mechanical RGB keyboard"
-        ),
-        new Product(
-            2,
-            "Monitor",
-            3499,
-            new DateTime(2024, 5, 20),
-            "Displays",
-            "B3",
-            12,
-            "27 inch 4K IPS"
-        ),
-        new Product(
-            3,
-            "Mouse",
-            549,
-            new DateTime(2024, 7, 1),
-            "Peripherals",
-            "A2",
-            60,
-            "Ergonomic wireless mouse"
-        ),
-        new Product(
-            4,
-            "Headset",
-            1299,
-            new DateTime(2024, 8, 10),
-            "Audio",
-            "C1",
-            25,
-            "Noise cancelling USB headset"
-        ),
-    };
+        _context = context;
+    }
 
     public IActionResult Index()
     {
-        return View(_products);
+        return View(_context.Products);
     }
 
     public IActionResult Inventory()
     {
-        var products = _products.Select(p => new ProductViewModel(p.Name, p.Price, p.Count));
+        var products = _context.Products.Select(p => new ProductViewModel(
+            p.Name,
+            p.Price,
+            p.Count
+        ));
         return View(products);
     }
 
@@ -64,17 +33,17 @@ public class ProductsController : Controller
     {
         if (string.IsNullOrEmpty(category))
         {
-            return View("Index", _products);
+            return View("Index", _context.Products);
         }
-        var products = _products.Where(p =>
-            p.Category.Contains(category, StringComparison.OrdinalIgnoreCase)
+        var products = _context.Products.Where(p =>
+            p.Category.ToLower().Contains(category.ToLower())
         );
         return View("Index", products);
     }
 
     public IActionResult Details(int id)
     {
-        var product = _products.FirstOrDefault(p => p.Id == id);
+        var product = _context.Products.FirstOrDefault(p => p.Id == id);
         if (product == null)
         {
             return NotFound();
@@ -89,7 +58,6 @@ public class ProductsController : Controller
 
     [HttpPost]
     public IActionResult Create(
-        int id,
         string name,
         int price,
         DateTime orderdate,
@@ -99,14 +67,25 @@ public class ProductsController : Controller
         string description
     )
     {
-        var product = new Product(id, name, price, orderdate, category, shelf, count, description);
-        _products.Add(product);
+        var product = new Product
+        {
+            Name = name,
+            Price = price,
+            Orderdate = orderdate,
+            Category = category,
+            Shelf = shelf,
+            Count = count,
+            Description = description,
+        };
+
+        _context.Products.Add(product);
+        _context.SaveChanges();
         return RedirectToAction("Index");
     }
 
     public IActionResult Edit(int id)
     {
-        var product = _products.FirstOrDefault(p => p.Id == id);
+        var product = _context.Products.FirstOrDefault(p => p.Id == id);
         if (product == null)
         {
             return NotFound();
@@ -126,19 +105,25 @@ public class ProductsController : Controller
         string description
     )
     {
-        var existing = _products.FirstOrDefault(p => p.Id == id);
+        var existing = _context.Products.FirstOrDefault(p => p.Id == id);
         if (existing == null)
         {
             return NotFound();
         }
-        _products.Remove(existing);
-        _products.Add(new Product(id, name, price, orderdate, category, shelf, count, description));
+        existing.Name = name;
+        existing.Price = price;
+        existing.Orderdate = orderdate;
+        existing.Category = category;
+        existing.Shelf = shelf;
+        existing.Count = count;
+        existing.Description = description;
+        _context.SaveChanges();
         return RedirectToAction("Index");
     }
 
     public IActionResult Delete(int id)
     {
-        var product = _products.FirstOrDefault(p => p.Id == id);
+        var product = _context.Products.FirstOrDefault(p => p.Id == id);
         if (product == null)
         {
             return NotFound();
@@ -149,10 +134,11 @@ public class ProductsController : Controller
     [HttpPost, ActionName("Delete")]
     public IActionResult DeleteConfirmed(int id)
     {
-        var product = _products.FirstOrDefault(p => p.Id == id);
+        var product = _context.Products.FirstOrDefault(p => p.Id == id);
         if (product != null)
         {
-            _products.Remove(product);
+            _context.Products.Remove(product);
+            _context.SaveChanges();
         }
         return RedirectToAction("Index");
     }
