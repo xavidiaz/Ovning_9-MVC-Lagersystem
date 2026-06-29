@@ -5,9 +5,19 @@
 <p>
     <a asp-action="Create" class="btn btn-primary">Add New Product</a>
 </p>
-<form asp-action="Search" method="get">
-    <input name="category" type="text" class="form-control" placeholder="Search by category..." />
-    <button type="submit" class="btn btn-primary mt-2">Search</button>
+<form asp-action="Search" method="get" class="d-flex gap-2 mb-3">
+<select name="category" class="form-control" style="flex:1" onchange="this.form.submit()">
+        <option value="">All Categories</option>
+        @if (ViewBag.Categories != null)
+        {
+            @foreach (var item in ViewBag.Categories as IEnumerable<SelectListItem>)
+            {
+                <option value="@item.Value" selected="@(item.Value == ViewBag.SelectedCategory ? "selected" : null)">@item.Text</option>
+            }
+        }
+    </select>
+<input name="searchTerm" type="text" class="form-control" style="flex:2" value="@ViewBag.SearchTerm" placeholder="Search by product name..." />
+    <button type="submit" class="btn btn-primary">Search</button>
 </form>
 <table class="table">
     <thead>

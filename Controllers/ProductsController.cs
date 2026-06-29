@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Ovning_9.Data;
 using Ovning_9.Models;
 
@@ -29,15 +30,26 @@ public class ProductsController : Controller
         return View(products);
     }
 
-    public IActionResult Search(string category)
+    public IActionResult Search(string category, string searchTerm)
     {
-        if (string.IsNullOrEmpty(category))
+        ViewBag.Categories = _context
+            .Products.Select(p => p.Category)
+            .Distinct()
+            .Select(c => new SelectListItem { Text = c, Value = c })
+            .ToList();
+        ViewBag.SelectedCategory = category;
+        ViewBag.SearchTerm = searchTerm;
+
+        var products = _context.Products.AsQueryable();
+
+        if (!string.IsNullOrEmpty(category))
         {
-            return View("Index", _context.Products);
+            products = products.Where(p => p.Category == category);
         }
-        var products = _context.Products.Where(p =>
-            p.Category.ToLower().Contains(category.ToLower())
-        );
+        if (!string.IsNullOrEmpty(searchTerm))
+        {
+            products = products.Where(p => p.Name.ToLower().Contains(searchTerm.ToLower()));
+        }
         return View("Index", products);
     }
 

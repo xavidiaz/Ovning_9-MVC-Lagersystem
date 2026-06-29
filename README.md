@@ -50,5 +50,5 @@ ASP.NET Core MVC app för lagerhantering av produkter.
 - [x] Injicera `StorageContext` i `ProductsController` via konstruktorn
 - [x] Ersätt hårdkodad lista med `_context.Product` i alla actions
 - [x] Verifiera att alla vyer fungerar med riktig data
-- [ ] **Extra:** Dropdown-meny med kategorier från databasen (`IEnumerable<SelectListItem>`)
-- [ ] **Extra:** Kombinerad filtrering på kategori + produktnamn
+- [x] **Extra:** Dropdown-meny med kategorier från databasen (`IEnumerable<SelectListItem>`)
+- [x] **Extra:** Kombinerad filtrering på kategori + produktnamn
