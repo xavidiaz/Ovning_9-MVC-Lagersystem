@@ -1,0 +1,5 @@
+**/bin/
+**/obj/
+.git/
+storage.db-shm
+storage.db-wal
